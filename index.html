@@ -2151,9 +2151,9 @@
 
     <script>
         // ============================================================
-        // UTILITY: FORMAT NOMINAL — KOMA RIBUAN (en-US)
-        // Contoh: 66,739,308.00 -> 66,739,308
-        //         96,692,000.00 -> 96,692,000
+        // UTILITY: FORMAT NOMINAL — Rp. + KOMA RIBUAN + ,-
+        // Contoh: 66,739,308.00 -> Rp. 66,739,308,-
+        //         96,692,000.00 -> Rp. 96,692,000,-
         // ============================================================
         function formatNominalKoma(raw) {
             if (raw === null || raw === undefined || raw === '') return '—';
@@ -2215,8 +2215,8 @@
             const num = parseInt(integerPart, 10);
             if (isNaN(num)) return raw;
 
-            // ✅ FIX: gunakan 'en-US' agar pemisah ribuan = KOMA
-            return num.toLocaleString('en-US');
+            // ✅ Rp. + KOMA ribuan + ,-
+            return 'Rp. ' + num.toLocaleString('en-US') + ',-';
         }
 
         // ============================================================
@@ -3483,7 +3483,7 @@ Total Nominal Withdraw : ${nominalWithdraw}`;
             }, 2500);
         }
 
-        console.log('✅ Dashboard siap - Nominal format KOMA (en-US)');
+        console.log('✅ Dashboard siap - Nominal Rp. + KOMA + ,-');
     </script>
 
 </body>
