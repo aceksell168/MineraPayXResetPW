@@ -2151,7 +2151,9 @@
 
     <script>
         // ============================================================
-        // UTILITY: FORMAT NOMINAL DENGAN KOMA (FIXED - AKURAT)
+        // UTILITY: FORMAT NOMINAL — KOMA RIBUAN (en-US)
+        // Contoh: 66,739,308.00 -> 66,739,308
+        //         96,692,000.00 -> 96,692,000
         // ============================================================
         function formatNominalKoma(raw) {
             if (raw === null || raw === undefined || raw === '') return '—';
@@ -2172,51 +2174,40 @@
             const hasDot = str.includes('.');
 
             if (hasComma && hasDot) {
-                // Ada koma DAN titik -> pemisah terakhir = desimal
                 const lastComma = str.lastIndexOf(',');
                 const lastDot = str.lastIndexOf('.');
-                
+
                 if (lastComma > lastDot) {
-                    // Format: 65.995.308,00 -> koma desimal, titik ribuan
+                    // 65.995.308,00 -> koma desimal, titik ribuan
                     integerPart = str.split(',')[0].replace(/\./g, '');
                 } else {
-                    // Format: 65,995,308.00 -> titik desimal, koma ribuan
+                    // 65,995,308.00 -> titik desimal, koma ribuan
                     integerPart = str.split('.')[0].replace(/,/g, '');
                 }
             } else if (hasComma && !hasDot) {
-                // Hanya koma
                 const parts = str.split(',');
                 const lastPart = parts[parts.length - 1];
                 if (parts.length > 2) {
-                    // 65,995,308 -> koma ribuan
                     integerPart = str.replace(/,/g, '');
                 } else if (lastPart.length === 3) {
-                    // 65,995 -> koma ribuan
                     integerPart = str.replace(/,/g, '');
                 } else {
-                    // 65,9 atau 65,99 -> koma desimal
                     integerPart = parts[0];
                 }
             } else if (hasDot && !hasComma) {
-                // Hanya titik
                 const parts = str.split('.');
                 const lastPart = parts[parts.length - 1];
                 if (parts.length > 2) {
-                    // 65.995.308 -> titik ribuan
                     integerPart = str.replace(/\./g, '');
                 } else if (lastPart.length === 3) {
-                    // 65.995 -> titik ribuan
                     integerPart = str.replace(/\./g, '');
                 } else {
-                    // 65.9 atau 65.99 -> titik desimal
                     integerPart = parts[0];
                 }
             } else {
-                // Hanya digit
                 integerPart = str;
             }
 
-            // Bersihkan sisa karakter non-digit
             integerPart = integerPart.replace(/[^\d]/g, '');
 
             if (integerPart === '') return '—';
@@ -2224,8 +2215,8 @@
             const num = parseInt(integerPart, 10);
             if (isNaN(num)) return raw;
 
-            // Format dengan KOMA sebagai pemisah ribuan (locale id-ID)
-            return 'Rp. ' + num.toLocaleString('id-ID') + ',-';
+            // ✅ FIX: gunakan 'en-US' agar pemisah ribuan = KOMA
+            return num.toLocaleString('en-US');
         }
 
         // ============================================================
@@ -3492,7 +3483,7 @@ Total Nominal Withdraw : ${nominalWithdraw}`;
             }, 2500);
         }
 
-        console.log('✅ Dashboard siap - Format nominal KOMA akurat');
+        console.log('✅ Dashboard siap - Nominal format KOMA (en-US)');
     </script>
 
 </body>
