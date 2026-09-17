@@ -1169,6 +1169,474 @@
             letter-spacing: 0.5px;
         }
 
+        /* ===== VALIDASI PER JAM ===== */
+        .vh-card {
+            max-width: 1360px;
+            width: 100%;
+            background: #111d33;
+            border-radius: 32px;
+            padding: 2rem 2.2rem 2.2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            border: 1px solid #1e3350;
+            margin: 0 auto;
+        }
+
+        .vh-card .vh-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #1e3350;
+        }
+
+        .vh-card .vh-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .vh-card .vh-header-left img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .vh-card .vh-header h1 {
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: #c8dfff;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vh-card .vh-header h1 small {
+            font-weight: 400;
+            font-size: 1rem;
+            color: #3d6382;
+            margin-left: 10px;
+        }
+
+        /* ===== VH DATETIME PANEL ===== */
+        .vh-datetime-panel {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: #0d1a2d;
+            padding: 0.5rem 1.8rem;
+            border-radius: 50px;
+            border: 1px solid #1e3350;
+            transition: all 0.3s ease;
+            flex-wrap: wrap;
+        }
+
+        .vh-datetime-panel:hover {
+            border-color: #3b7eff;
+            box-shadow: 0 0 20px rgba(59, 126, 255, 0.15);
+        }
+
+        .vh-date-display {
+            font-size: 0.92rem;
+            font-weight: 450;
+            color: #8db0e8;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .vh-date-display::before {
+            content: "📅";
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        .vh-clock-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            position: relative;
+            flex-wrap: wrap;
+        }
+
+        .vh-clock-icon {
+            color: #6a9eff;
+            font-size: 1rem;
+            opacity: 0.6;
+        }
+
+        .vh-clock-display-only {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #e8f0ff;
+            letter-spacing: 0.5px;
+            padding: 0.2rem 0.8rem;
+            background: rgba(10, 22, 40, 0.5);
+            border-radius: 30px;
+            border: 1px solid #1a2a42;
+            min-width: 80px;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .vh-clock-display-only .wib {
+            font-size: 0.6rem;
+            color: #5a7a9a;
+            font-weight: 300;
+            margin-left: 0.2rem;
+        }
+
+        .vh-clock-status {
+            font-size: 0.55rem;
+            color: #4a8a5a;
+            opacity: 0.6;
+            font-weight: 300;
+            letter-spacing: 0.3px;
+        }
+
+        .vh-clock-status.manual-mode {
+            color: #6a8a9a;
+        }
+
+        .vh-custom-clock-btn {
+            background: transparent;
+            border: 1px solid #1a2a42;
+            color: #7a9fcf;
+            padding: 0.25rem 0.8rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+        }
+
+        .vh-custom-clock-btn:hover {
+            border-color: #3b7eff;
+            color: #c8dfff;
+            background: rgba(59, 126, 255, 0.08);
+            box-shadow: 0 0 15px rgba(59, 126, 255, 0.1);
+        }
+
+        .vh-clock-popup {
+            display: none;
+            position: absolute;
+            background: #0d1a2d;
+            border: 1px solid #2a5a9a;
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 180px;
+        }
+
+        .vh-clock-popup.show {
+            display: block;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .vh-clock-popup label {
+            font-size: 0.75rem;
+            color: #7a9fcf;
+            display: block;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.3px;
+        }
+
+        .vh-clock-popup input[type="time"] {
+            background: #0a1628;
+            border: 1px solid #1a2a42;
+            border-radius: 30px;
+            padding: 0.4rem 1rem;
+            font-size: 1rem;
+            color: #e8f0ff;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .vh-clock-popup input[type="time"]:focus {
+            outline: none;
+            border-color: #3b7eff;
+            box-shadow: 0 0 20px rgba(59, 126, 255, 0.15);
+        }
+
+        .vh-clock-popup .popup-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.6rem;
+            justify-content: flex-end;
+        }
+
+        .vh-clock-popup .popup-actions button {
+            padding: 0.25rem 1.2rem;
+            border-radius: 30px;
+            border: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vh-clock-popup .popup-actions .btn-save-clock {
+            background: #1a3a6a;
+            color: white;
+        }
+
+        .vh-clock-popup .popup-actions .btn-save-clock:hover {
+            background: #224a82;
+        }
+
+        .vh-clock-popup .popup-actions .btn-cancel-clock {
+            background: #2a1a22;
+            color: #e8a0a0;
+        }
+
+        .vh-clock-popup .popup-actions .btn-cancel-clock:hover {
+            background: #3a222a;
+        }
+
+        /* ===== VH MANUAL INPUT ===== */
+        .vh-manual-section {
+            background: #0d1a2d;
+            border-radius: 18px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid #1e3350;
+        }
+
+        .vh-manual-section h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #8db0e8;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .vh-manual-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+        }
+
+        .vh-manual-item label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #7a9fcf;
+            margin-bottom: 5px;
+            letter-spacing: 0.3px;
+        }
+
+        .vh-manual-item input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid #1a2a42;
+            border-radius: 14px;
+            background: #0a1628;
+            color: #eaf3ff;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            transition: 0.2s;
+            outline: none;
+        }
+
+        .vh-manual-item input:focus {
+            border-color: #6a9eff;
+            box-shadow: 0 0 0 3px rgba(106, 158, 255, 0.15);
+        }
+
+        .vh-manual-item input::placeholder {
+            color: #3a5a7a;
+            font-weight: 400;
+        }
+
+        /* ===== VH PASTE SECTION ===== */
+        .vh-paste-area {
+            background: #0d1a2d;
+            border-radius: 18px;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid #1e3350;
+        }
+
+        .vh-paste-area label {
+            font-weight: 600;
+            color: #8db0e8;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.85rem;
+        }
+
+        .vh-paste-area textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 14px 16px;
+            font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+            font-size: 0.85rem;
+            border: 1px solid #1a2a42;
+            border-radius: 14px;
+            background: #0a1628;
+            resize: vertical;
+            transition: 0.2s;
+            line-height: 1.7;
+            color: #eaf3ff;
+        }
+
+        .vh-paste-area textarea:focus {
+            outline: none;
+            border-color: #6a9eff;
+            box-shadow: 0 0 0 3px rgba(106, 158, 255, 0.15);
+        }
+
+        .vh-paste-area textarea::placeholder {
+            color: #3a5a7a;
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .vh-action-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            gap: 12px;
+        }
+
+        .vh-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.3px;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .vh-btn:active { transform: scale(0.96); }
+
+        .vh-btn-generate {
+            background: #1a4a3a;
+            color: #b0f0d0;
+            border-color: #2a6a52;
+        }
+        .vh-btn-generate:hover {
+            background: #225a48;
+            color: #d0fff0;
+            box-shadow: 0 0 30px rgba(60, 200, 140, 0.15);
+            border-color: #3a8a6a;
+            transform: scale(1.03);
+        }
+
+        .vh-btn-delete {
+            background: #2a1a22;
+            color: #e8a0a0;
+            border-color: #4a2a32;
+        }
+        .vh-btn-delete:hover {
+            background: #3a222a;
+            color: #ffb0b0;
+            box-shadow: 0 0 30px rgba(200, 60, 60, 0.15);
+            border-color: #6a3a42;
+            transform: scale(1.03);
+        }
+
+        .vh-btn-copy {
+            background: #1a3a6a;
+            color: white;
+            border-color: #2a5a9a;
+        }
+        .vh-btn-copy:hover {
+            background: #224a82;
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(59, 126, 255, 0.2);
+            border-color: #3b7eff;
+        }
+
+        .vh-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .vh-result-card {
+            background: #0d1a2d;
+            border-radius: 18px;
+            padding: 1.2rem 1.4rem;
+            border: 1px solid #1a2a42;
+            transition: all 0.3s ease;
+        }
+        .vh-result-card:hover {
+            border-color: #3b7eff;
+            box-shadow: 0 0 30px rgba(59, 126, 255, 0.08);
+        }
+
+        .vh-result-card .vh-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #7a9fcf;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .vh-result-card .vh-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #eaf3ff;
+            font-variant-numeric: tabular-nums;
+            word-break: break-word;
+        }
+
+        .vh-result-card .vh-value.currency {
+            font-size: 1.15rem;
+            color: #b0f0d0;
+        }
+
+        .vh-result-card .vh-value.count {
+            color: #6a9eff;
+        }
+
+        .vh-empty-state {
+            text-align: center;
+            padding: 48px 20px;
+            color: #5a7a9a;
+        }
+        .vh-empty-state i {
+            font-size: 42px;
+            margin-bottom: 16px;
+            opacity: 0.4;
+            color: #6a9eff;
+        }
+        .vh-empty-state h3 {
+            font-weight: 600;
+            font-size: 18px;
+            color: #8db0e8;
+            margin-bottom: 6px;
+        }
+        .vh-empty-state p {
+            font-size: 15px;
+            color: #5a7a9a;
+        }
+
         /* ===== POPUP ===== */
         .popup-overlay {
             position: fixed;
@@ -1363,6 +1831,16 @@
             .wd-lampiran-section .wd-label { min-width: 90px; }
             .wd-report-meta { font-size: 0.75rem; padding: 3px 12px; }
             .popup-box { padding: 28px 24px 24px; }
+            .vh-card { padding: 1.2rem; }
+            .vh-card .vh-header { flex-direction: column; align-items: stretch; }
+            .vh-card .vh-header-left { flex-wrap: wrap; }
+            .vh-card .vh-header h1 { font-size: 1.4rem; flex-wrap: wrap; }
+            .vh-action-row { flex-direction: column; align-items: stretch; }
+            .vh-btn { justify-content: center; flex: 1; }
+            .vh-grid { grid-template-columns: 1fr; }
+            .vh-manual-grid { grid-template-columns: 1fr; }
+            .vh-datetime-panel { justify-content: center; width: 100%; padding: 0.5rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
+            .vh-clock-wrapper { justify-content: center; flex-wrap: wrap; }
         }
 
         @media (max-width: 480px) {
@@ -1376,6 +1854,8 @@
             .wd-transaction-block .wd-label { min-width: 70px; font-size: 0.8rem; }
             .wd-transaction-block .wd-value { font-size: 0.85rem; }
             .wd-transaction-block .wd-nominal { font-size: 0.85rem; padding: 0 10px; }
+            .vh-card .vh-header h1 { font-size: 1.1rem; }
+            .vh-result-card .vh-value { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -1387,7 +1867,6 @@
             <img src="https://cdn.areabermain.club/assets/cdn/az3/2025/10/14/20251014/7127b25e0a18569e6965c6ddb6660364/topanbos88.png" alt="Logo">
         </div>
 
-        <!-- Brand Selector untuk WD MineraPay -->
         <div class="sidebar-brand-selector">
             <label>Brand</label>
             <select id="wdBrandSelect">
@@ -1413,6 +1892,7 @@
             <li class="menu-label">Menu</li>
             <li><a href="#" class="active" data-page="page-reset"><span class="icon">🔑</span> Reset Password</a></li>
             <li><a href="#" data-page="page-wd"><span class="icon">💳</span> Wd Pending MineraPay</a></li>
+            <li><a href="#" data-page="page-validasi-jam"><span class="icon">📊</span> Validasi Per Jam</a></li>
         </ul>
     </nav>
 
@@ -1589,12 +2069,74 @@
             </div>
         </div>
 
+        <!-- ===== PAGE 3: VALIDASI PER JAM ===== -->
+        <div id="page-validasi-jam" class="page">
+            <div class="vh-card">
+                <div class="vh-header">
+                    <div class="vh-header-left">
+                        <img src="https://cdn.areabermain.club/assets/cdn/az3/2025/10/14/20251014/7127b25e0a18569e6965c6ddb6660364/topanbos88.png" alt="Logo">
+                        <h1>📊 Validasi Per Jam <small id="vhBrandLabel">TopanBos88</small></h1>
+                    </div>
+                    <div class="vh-datetime-panel">
+                        <span class="vh-date-display" id="vhDateDisplay">17 September 2026</span>
+                        <div class="vh-clock-wrapper">
+                            <span class="vh-clock-icon">🕐</span>
+                            <span class="vh-clock-display-only" id="vhClockDisplay">00:00 <span class="wib">WIB</span></span>
+                            <span class="vh-clock-status" id="vhClockStatus">● auto</span>
+                            <button class="vh-custom-clock-btn" id="vhCustomClockBtn">⚙ ubah</button>
+                            <div class="vh-clock-popup" id="vhClockPopup">
+                                <label>Atur Jam Manual</label>
+                                <input type="time" id="vhClockInput" value="00:00" step="3600">
+                                <div class="popup-actions">
+                                    <button class="btn-cancel-clock" id="vhCancelClockBtn">Batal</button>
+                                    <button class="btn-save-clock" id="vhSaveClockBtn">Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vh-manual-section">
+                    <h3>✏️ Input Manual</h3>
+                    <div class="vh-manual-grid">
+                        <div class="vh-manual-item">
+                            <label>Total Validasi</label>
+                            <input type="text" id="vhInputValidasi" placeholder="contoh: 123">
+                        </div>
+                        <div class="vh-manual-item">
+                            <label>Total Member Aktif / Deposit</label>
+                            <input type="text" id="vhInputAktif" placeholder="contoh: 120">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="vh-paste-area">
+                    <label for="vhRawData">📋 Paste Data Validasi (Deposit & Withdraw)</label>
+                    <textarea id="vhRawData" placeholder="Contoh format:&#10;Deposit Total:&#9;65,995,308.00&#9;800&#10;Withdraw Total:&#9;96,339,000.00&#9;197&#10;&#10;Atau:&#10;Total Member Yang Deposit : 800&#10;Total Nominal Deposit : Rp.&#9;65,995,308,-&#10;Total Member Yang Withdraw : 197&#10;Total Nominal Withdraw : Rp. 96,339,000,-"></textarea>
+                    
+                    <div class="vh-action-row">
+                        <div class="action-left">
+                            <button class="vh-btn vh-btn-generate" id="vhGenerateBtn">⚡ Generate</button>
+                            <button class="vh-btn vh-btn-delete" id="vhDeleteBtn">🗑️ Delete</button>
+                        </div>
+                        <button class="vh-btn vh-btn-copy" id="vhCopyBtn">📄 Copy</button>
+                    </div>
+                </div>
+
+                <div id="vhResultArea">
+                    <div class="vh-empty-state">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Belum ada data</h3>
+                        <p>Isi input manual & paste data validasi, lalu klik Generate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Toast Notification -->
     <div id="toast" class="toast">✅ Berhasil disalin!</div>
 
-    <!-- ===== POPUP ===== -->
     <div class="popup-overlay" id="wdPopupOverlay">
         <div class="popup-box">
             <button class="popup-close" id="wdPopupClose">✕</button>
@@ -1609,12 +2151,91 @@
 
     <script>
         // ============================================================
+        // UTILITY: FORMAT NOMINAL DENGAN KOMA (FIXED - AKURAT)
+        // ============================================================
+        function formatNominalKoma(raw) {
+            if (raw === null || raw === undefined || raw === '') return '—';
+            let str = String(raw).trim();
+
+            // Hapus prefix "Rp." / "Rp" dan spasi
+            str = str.replace(/^Rp\.?\s*/i, '').trim();
+            // Hapus trailing ",-" atau "-" atau ","
+            str = str.replace(/[,\-]+$/g, '').trim();
+            // Hapus karakter selain digit, titik, koma
+            str = str.replace(/[^\d.,]/g, '');
+
+            if (str === '') return '—';
+
+            let integerPart = '';
+
+            const hasComma = str.includes(',');
+            const hasDot = str.includes('.');
+
+            if (hasComma && hasDot) {
+                // Ada koma DAN titik -> pemisah terakhir = desimal
+                const lastComma = str.lastIndexOf(',');
+                const lastDot = str.lastIndexOf('.');
+                
+                if (lastComma > lastDot) {
+                    // Format: 65.995.308,00 -> koma desimal, titik ribuan
+                    integerPart = str.split(',')[0].replace(/\./g, '');
+                } else {
+                    // Format: 65,995,308.00 -> titik desimal, koma ribuan
+                    integerPart = str.split('.')[0].replace(/,/g, '');
+                }
+            } else if (hasComma && !hasDot) {
+                // Hanya koma
+                const parts = str.split(',');
+                const lastPart = parts[parts.length - 1];
+                if (parts.length > 2) {
+                    // 65,995,308 -> koma ribuan
+                    integerPart = str.replace(/,/g, '');
+                } else if (lastPart.length === 3) {
+                    // 65,995 -> koma ribuan
+                    integerPart = str.replace(/,/g, '');
+                } else {
+                    // 65,9 atau 65,99 -> koma desimal
+                    integerPart = parts[0];
+                }
+            } else if (hasDot && !hasComma) {
+                // Hanya titik
+                const parts = str.split('.');
+                const lastPart = parts[parts.length - 1];
+                if (parts.length > 2) {
+                    // 65.995.308 -> titik ribuan
+                    integerPart = str.replace(/\./g, '');
+                } else if (lastPart.length === 3) {
+                    // 65.995 -> titik ribuan
+                    integerPart = str.replace(/\./g, '');
+                } else {
+                    // 65.9 atau 65.99 -> titik desimal
+                    integerPart = parts[0];
+                }
+            } else {
+                // Hanya digit
+                integerPart = str;
+            }
+
+            // Bersihkan sisa karakter non-digit
+            integerPart = integerPart.replace(/[^\d]/g, '');
+
+            if (integerPart === '') return '—';
+
+            const num = parseInt(integerPart, 10);
+            if (isNaN(num)) return raw;
+
+            // Format dengan KOMA sebagai pemisah ribuan (locale id-ID)
+            return 'Rp. ' + num.toLocaleString('id-ID') + ',-';
+        }
+
+        // ============================================================
         // SIDEBAR NAVIGATION
         // ============================================================
         const menuLinks = document.querySelectorAll('.sidebar-menu a[data-page]');
         const pages = {
             'page-reset': document.getElementById('page-reset'),
-            'page-wd': document.getElementById('page-wd')
+            'page-wd': document.getElementById('page-wd'),
+            'page-validasi-jam': document.getElementById('page-validasi-jam')
         };
 
         function activatePage(pageId) {
@@ -1651,12 +2272,13 @@
         }
 
         // ============================================================
-        // BRAND & SMB38 SELECTOR UNTUK WD
+        // BRAND & SMB38 SELECTOR
         // ============================================================
         const wdBrandSelect = document.getElementById('wdBrandSelect');
         const wdSmbSelect = document.getElementById('wdSmbSelect');
         const wdSmbManual = document.getElementById('wdSmbManual');
         const wdBrandLabel = document.getElementById('wdBrandLabel');
+        const vhBrandLabel = document.getElementById('vhBrandLabel');
 
         function getSelectedBrand() {
             return wdBrandSelect.value;
@@ -1673,6 +2295,7 @@
             const brand = getSelectedBrand();
             const smb = getSelectedSmb38();
             wdBrandLabel.textContent = brand + ' - ' + smb;
+            vhBrandLabel.textContent = brand;
         }
 
         wdSmbSelect.addEventListener('change', function() {
@@ -1688,11 +2311,10 @@
         wdSmbManual.addEventListener('input', updateBrandLabel);
         wdBrandSelect.addEventListener('change', updateBrandLabel);
 
-        // Inisialisasi label
         updateBrandLabel();
 
         // ============================================================
-        // RESET PASSWORD (terpisah)
+        // RESET PASSWORD
         // ============================================================
         (function resetPasswordScript() {
             const STORAGE_KEY_ID_HISTORY = 'topanbos88_user_ids_history';
@@ -1911,8 +2533,6 @@
 
             function generatePasswordWithDigits(length, charset) {
                 const numbers = "0123456789";
-                let pwd = "";
-                
                 if (charset.includes('0') || charset.includes('1') || charset.includes('2') || 
                     charset.includes('3') || charset.includes('4') || charset.includes('5') || 
                     charset.includes('6') || charset.includes('7') || charset.includes('8') || charset.includes('9')) {
@@ -1920,11 +2540,7 @@
                     const nonDigits = charset.split('').filter(ch => !numbers.includes(ch));
                     const digits = charset.split('').filter(ch => numbers.includes(ch));
                     
-                    if (nonDigits.length === 0) {
-                        return generateRawPassword(length, charset);
-                    }
-                    
-                    if (digits.length === 0) {
+                    if (nonDigits.length === 0 || digits.length === 0) {
                         return generateRawPassword(length, charset);
                     }
                     
@@ -1932,15 +2548,11 @@
                     while (attempts < 50) {
                         let result = '';
                         let digitCount = 0;
-                        
                         let positions = [];
                         while (positions.length < 2) {
                             let pos = getSecureRandomInt(length);
-                            if (!positions.includes(pos)) {
-                                positions.push(pos);
-                            }
+                            if (!positions.includes(pos)) positions.push(pos);
                         }
-                        
                         for (let i = 0; i < length; i++) {
                             if (positions.includes(i)) {
                                 result += digits[getSecureRandomInt(digits.length)];
@@ -1949,14 +2561,10 @@
                                 result += nonDigits[getSecureRandomInt(nonDigits.length)];
                             }
                         }
-                        
-                        if (digitCount >= 2) {
-                            return result;
-                        }
+                        if (digitCount >= 2) return result;
                         attempts++;
                     }
                 }
-                
                 return generateRawPassword(length, charset);
             }
 
@@ -1974,20 +2582,14 @@
                     } else {
                         newPassword = generateRawPassword(length, charset);
                     }
-                    
-                    if(!globalPasswordSet.has(newPassword)) {
-                        return newPassword;
-                    }
+                    if(!globalPasswordSet.has(newPassword)) return newPassword;
                     attempt++;
                 }
                 
                 const extra = Date.now().toString(36).slice(-4);
                 let candidate = generateRawPassword(length - 4, charset) + extra;
-                if (includeNumbers) {
-                    candidate = generatePasswordWithDigits(length, charset);
-                }
+                if (includeNumbers) candidate = generatePasswordWithDigits(length, charset);
                 if(!globalPasswordSet.has(candidate)) return candidate;
-                
                 return generateRawPassword(length, charset) + Date.now().toString(36).slice(-2);
             }
 
@@ -2015,13 +2617,11 @@
                 }
                 
                 let newPassword = generateUniquePassword(length, includeNumbers, includeSymbols, includeMixedCase);
-                
                 while (newPassword.length !== length) {
                     newPassword = generateUniquePassword(length, includeNumbers, includeSymbols, includeMixedCase);
                 }
                 
                 globalPasswordSet.add(newPassword);
-                
                 let currentUserId = userIdInput ? userIdInput.value.trim() : '';
 
                 generatedHistory.unshift({
@@ -2088,9 +2688,7 @@
                 
                 const intervalMs = intervalMinutes * 60 * 1000;
                 autoTimer = setInterval(() => {
-                    if(isAutoEnabled) {
-                        refreshAndGenerate(true);
-                    }
+                    if(isAutoEnabled) refreshAndGenerate(true);
                 }, intervalMs);
                 if (autoStatusText) {
                     autoStatusText.innerText = `🟢 Auto aktif · setiap ${intervalMinutes} menit`;
@@ -2117,9 +2715,7 @@
                     if(intervalMinutes < 0.5) intervalMinutes = 0.5;
                     const intervalMs = intervalMinutes * 60 * 1000;
                     autoTimer = setInterval(() => {
-                        if(isAutoEnabled) {
-                            refreshAndGenerate(true);
-                        }
+                        if(isAutoEnabled) refreshAndGenerate(true);
                     }, intervalMs);
                     if (autoStatusText) {
                         autoStatusText.innerText = `🟢 Auto aktif · setiap ${intervalMinutes} menit (reset)`;
@@ -2224,15 +2820,9 @@
             }
 
             function initResetPassword() {
-                if (lengthSlider) {
-                    lengthSlider.value = "6";
-                }
-                if (lengthNumberSpan) {
-                    lengthNumberSpan.innerText = "6";
-                }
-                if (includeSymbolsCB) {
-                    includeSymbolsCB.checked = false;
-                }
+                if (lengthSlider) lengthSlider.value = "6";
+                if (lengthNumberSpan) lengthNumberSpan.innerText = "6";
+                if (includeSymbolsCB) includeSymbolsCB.checked = false;
 
                 const history = getUserIdHistory();
                 let defaultId = history.length > 0 ? history[0] : "";
@@ -2270,30 +2860,14 @@
                 renderUserHistoryDropdown();
                 applyNoticeState();
 
-                if (lengthSlider) {
-                    lengthSlider.addEventListener("input", syncLength);
-                }
-                if (generateBtn) {
-                    generateBtn.addEventListener("click", () => refreshAndGenerate(true));
-                }
-                if (copyPasswordBtn) {
-                    copyPasswordBtn.addEventListener("click", copyPasswordOnly);
-                }
-                if (copyAllBtn) {
-                    copyAllBtn.addEventListener("click", copyAll);
-                }
-                if (saveUserIdBtn) {
-                    saveUserIdBtn.addEventListener("click", saveCurrentUserId);
-                }
-                if (clearHistoryBtn) {
-                    clearHistoryBtn.addEventListener("click", clearHistoryOnly);
-                }
-                if (historyDropdownBtn) {
-                    historyDropdownBtn.addEventListener("click", toggleDropdown);
-                }
-                if (toggleNoticeBtn) {
-                    toggleNoticeBtn.addEventListener("click", toggleNotice);
-                }
+                if (lengthSlider) lengthSlider.addEventListener("input", syncLength);
+                if (generateBtn) generateBtn.addEventListener("click", () => refreshAndGenerate(true));
+                if (copyPasswordBtn) copyPasswordBtn.addEventListener("click", copyPasswordOnly);
+                if (copyAllBtn) copyAllBtn.addEventListener("click", copyAll);
+                if (saveUserIdBtn) saveUserIdBtn.addEventListener("click", saveCurrentUserId);
+                if (clearHistoryBtn) clearHistoryBtn.addEventListener("click", clearHistoryOnly);
+                if (historyDropdownBtn) historyDropdownBtn.addEventListener("click", toggleDropdown);
+                if (toggleNoticeBtn) toggleNoticeBtn.addEventListener("click", toggleNotice);
 
                 document.addEventListener("click", function(e) {
                     if (!e.target.closest('.user-history-dropdown')) {
@@ -2318,9 +2892,7 @@
         })();
 
         // ============================================================
-        // WD PENDING MINERAPAY (DIPERBAIKI)
-        // - Filter hanya "Wait For Payment"
-        // - Brand & SMB38 dari selector sidebar
+        // WD PENDING MINERAPAY
         // ============================================================
         (function wdPendingScript() {
             const wdRawInput = document.getElementById('wdRawData');
@@ -2355,17 +2927,12 @@
             wdPopupBtn.addEventListener('click', hideWDPopup);
             wdPopupClose.addEventListener('click', hideWDPopup);
             wdPopupOverlay.addEventListener('click', function(e) {
-                if (e.target === wdPopupOverlay) {
-                    hideWDPopup();
-                }
+                if (e.target === wdPopupOverlay) hideWDPopup();
             });
             document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && wdPopupOverlay.classList.contains('active')) {
-                    hideWDPopup();
-                }
+                if (e.key === 'Escape' && wdPopupOverlay.classList.contains('active')) hideWDPopup();
             });
 
-            // ===== PARSING DENGAN FILTER "Wait For Payment" =====
             function parseWDData(text) {
                 const lines = text.split(/\r?\n/).filter(line => line.trim() !== '');
                 const transactions = [];
@@ -2378,11 +2945,9 @@
                     }
                 }
 
-                // Gabung baris yang terpotong: jika baris hanya berisi "Wait For Payment"
                 const mergedLines = [];
                 for (let i = startIndex; i < lines.length; i++) {
                     const line = lines[i].trim();
-                    // Jika baris hanya berisi "Wait For Payment" atau "Wait For Payment" dengan spasi, gabung ke baris sebelumnya
                     if (/^Wait\s+For\s+Payment$/i.test(line) && mergedLines.length > 0) {
                         mergedLines[mergedLines.length - 1] += ' ' + line;
                     } else {
@@ -2392,18 +2957,11 @@
 
                 for (let i = 0; i < mergedLines.length; i++) {
                     const line = mergedLines[i];
-                    
-                    // ===== FILTER: HANYA PROSES JIKA MENGANDUNG "Wait For Payment" =====
-                    if (!/Wait\s+For\s+Payment/i.test(line)) {
-                        continue;
-                    }
+                    if (!/Wait\s+For\s+Payment/i.test(line)) continue;
 
-                    // ===== REFERENCE NO =====
                     let refNo = '';
                     let refMatch = line.match(/([A-Z]+-MW\d+)/i);
-                    if (refMatch) {
-                        refNo = refMatch[1];
-                    }
+                    if (refMatch) refNo = refMatch[1];
                     if (!refNo) {
                         refMatch = line.match(/(LAPAK\d+)/i);
                         if (refMatch) refNo = refMatch[1];
@@ -2427,34 +2985,25 @@
                             }
                         }
                     }
-                    
                     if (!refNo) continue;
                     
-                    // ===== NOMINAL =====
                     let nominal = '';
                     let nominalMatch = line.match(/(\d{1,3}(?:,\d{3})+\.\d{2})/);
-                    if (nominalMatch) {
-                        nominal = nominalMatch[1];
-                    } else {
+                    if (nominalMatch) nominal = nominalMatch[1];
+                    else {
                         let match2 = line.match(/(\d{1,3}(?:\.\d{3})+)/);
-                        if (match2) {
-                            nominal = match2[1];
-                        } else {
+                        if (match2) nominal = match2[1];
+                        else {
                             let match3 = line.match(/(\d{4,})/);
-                            if (match3) {
-                                nominal = match3[1];
-                            }
+                            if (match3) nominal = match3[1];
                         }
                     }
-                    
                     if (!nominal) continue;
                     
-                    // ===== USER ID =====
                     let userid = '';
                     const userMatch = line.match(/^\d+\s+(\w+)/);
-                    if (userMatch) {
-                        userid = userMatch[1];
-                    } else {
+                    if (userMatch) userid = userMatch[1];
+                    else {
                         const parts = line.split(/\t|\s{2,}/).filter(p => p.trim() !== '');
                         for (let p of parts) {
                             let cleanP = p.replace(/[^A-Za-z0-9]/g, '');
@@ -2472,81 +3021,10 @@
                     }
 
                     if (userid && refNo && nominal) {
-                        transactions.push({
-                            userid: userid,
-                            refno: refNo,
-                            nominal: nominal
-                        });
+                        transactions.push({ userid, refno: refNo, nominal });
                     }
                 }
-
                 return transactions;
-            }
-
-            function formatWDNominal(value) {
-                let cleaned = value.replace(/\s/g, '');
-                
-                if (cleaned.includes(',') && cleaned.includes('.')) {
-                    let parts = cleaned.split(',');
-                    if (parts.length >= 3) {
-                        let ribuan = parts[0];
-                        let sisanya = parts.slice(1).join('');
-                        if (sisanya.includes('.')) {
-                            let desimalParts = sisanya.split('.');
-                            let angkaRibuan = desimalParts[0];
-                            let desimal = desimalParts[1];
-                            let fullNumber = ribuan + angkaRibuan;
-                            let number = parseInt(fullNumber);
-                            if (!isNaN(number)) {
-                                let formatted = number.toLocaleString('id-ID').replace(/\./g, ',');
-                                return 'Rp. ' + formatted + ',-';
-                            }
-                        }
-                    }
-                    if (parts.length === 2) {
-                        let ribuan = parts[0];
-                        let desimal = parts[1];
-                        if (desimal.includes('.')) {
-                            desimal = desimal.split('.')[0];
-                        }
-                        let fullNumber = ribuan + desimal;
-                        let number = parseInt(fullNumber);
-                        if (!isNaN(number)) {
-                            let formatted = number.toLocaleString('id-ID').replace(/\./g, ',');
-                            return 'Rp. ' + formatted + ',-';
-                        }
-                    }
-                }
-                
-                if (cleaned.includes(',') && !cleaned.includes('.')) {
-                    let parts = cleaned.split(',');
-                    let ribuan = parts[0];
-                    let desimal = parts[1] || '000';
-                    let fullNumber = ribuan + desimal;
-                    let number = parseInt(fullNumber);
-                    if (!isNaN(number)) {
-                        let formatted = number.toLocaleString('id-ID').replace(/\./g, ',');
-                        return 'Rp. ' + formatted + ',-';
-                    }
-                }
-                
-                if (cleaned.includes('.') && !cleaned.includes(',')) {
-                    let number = parseInt(cleaned.replace(/\./g, ''));
-                    if (!isNaN(number)) {
-                        let formatted = number.toLocaleString('id-ID').replace(/\./g, ',');
-                        return 'Rp. ' + formatted + ',-';
-                    }
-                }
-                
-                if (!cleaned.includes(',') && !cleaned.includes('.')) {
-                    let number = parseInt(cleaned);
-                    if (!isNaN(number)) {
-                        let formatted = number.toLocaleString('id-ID').replace(/\./g, ',');
-                        return 'Rp. ' + formatted + ',-';
-                    }
-                }
-                
-                return 'Rp. ' + cleaned + ',-';
             }
 
             function generateWDReport() {
@@ -2579,7 +3057,7 @@
 
                 let html = '';
                 for (let t of transactions) {
-                    const nominalFormatted = formatWDNominal(t.nominal);
+                    const nominalFormatted = formatNominalKoma(t.nominal);
                     html += `
                         <div class="wd-transaction-block">
                             <div class="wd-row">
@@ -2643,7 +3121,7 @@
                 reportText += 'Perihal : Transaksi Withdraw Minera Pending\n\n';
 
                 for (let t of transactions) {
-                    const nominalFormatted = formatWDNominal(t.nominal);
+                    const nominalFormatted = formatNominalKoma(t.nominal);
                     reportText += `User id : ${t.userid}\n`;
                     reportText += `Reference No : ${t.refno}\n`;
                     reportText += `Nominal : ${nominalFormatted}\n`;
@@ -2686,12 +3164,335 @@
             wdDeleteBtn.addEventListener('click', resetWDData);
             wdCopyBtn.addEventListener('click', copyWDReport);
 
-            // Inisialisasi placeholder
             wdRawInput.value = '';
             wdRawInput.placeholder = 'Input Data WD MNP Pending Dari Admin PNG Disini...';
         })();
 
-        console.log('✅ Dashboard siap - Reset Password & WD Pending MineraPay terpisah, filter "Wait For Payment", brand & SMB38 dapat dipilih.');
+        // ============================================================
+        // VALIDASI PER JAM
+        // ============================================================
+        (function validasiPerJamScript() {
+            const vhRawData = document.getElementById('vhRawData');
+            const vhInputValidasi = document.getElementById('vhInputValidasi');
+            const vhInputAktif = document.getElementById('vhInputAktif');
+            const vhGenerateBtn = document.getElementById('vhGenerateBtn');
+            const vhDeleteBtn = document.getElementById('vhDeleteBtn');
+            const vhCopyBtn = document.getElementById('vhCopyBtn');
+            const vhResultArea = document.getElementById('vhResultArea');
+            const vhTimestampInfo = document.getElementById('vhTimestampInfo');
+
+            const vhDateDisplay = document.getElementById('vhDateDisplay');
+            const vhClockDisplay = document.getElementById('vhClockDisplay');
+            const vhClockStatus = document.getElementById('vhClockStatus');
+            const vhClockInput = document.getElementById('vhClockInput');
+            const vhCustomClockBtn = document.getElementById('vhCustomClockBtn');
+            const vhClockPopup = document.getElementById('vhClockPopup');
+            const vhSaveClockBtn = document.getElementById('vhSaveClockBtn');
+            const vhCancelClockBtn = document.getElementById('vhCancelClockBtn');
+
+            let currentVHData = null;
+            let currentTimeVH = '';
+            let isManualModeVH = false;
+
+            function formatHourOnlyVH(hour) {
+                return String(hour).padStart(2, '0') + ':00';
+            }
+
+            function setClockDisplayVH(time, manual = false) {
+                currentTimeVH = time;
+                vhClockDisplay.innerHTML = `${time} <span class="wib">WIB</span>`;
+                if (manual) {
+                    vhClockStatus.textContent = '● manual';
+                    vhClockStatus.className = 'vh-clock-status manual-mode';
+                } else {
+                    vhClockStatus.textContent = '● auto';
+                    vhClockStatus.className = 'vh-clock-status';
+                }
+            }
+
+            function setClockAutoVH() {
+                const now = new Date();
+                setClockDisplayVH(formatHourOnlyVH(now.getHours()), false);
+            }
+
+            function setClockManualVH(time) {
+                setClockDisplayVH(time, true);
+                isManualModeVH = true;
+                vhClockInput.value = time;
+            }
+
+            function updateDateTimeVH() {
+                const now = new Date();
+                const days = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
+                const day = String(now.getDate()).padStart(2, '0');
+                const month = days[now.getMonth()];
+                const year = now.getFullYear();
+                if (vhDateDisplay) vhDateDisplay.textContent = `${day} ${month} ${year}`;
+
+                if (!isManualModeVH) {
+                    setClockDisplayVH(formatHourOnlyVH(now.getHours()), false);
+                }
+            }
+
+            vhCustomClockBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                vhClockPopup.classList.toggle('show');
+                if (vhClockPopup.classList.contains('show')) {
+                    vhClockInput.value = currentTimeVH;
+                    vhClockInput.focus();
+                }
+            });
+
+            vhSaveClockBtn.addEventListener('click', () => {
+                let newTime = vhClockInput.value || '00:00';
+                const hour = newTime.split(':')[0];
+                newTime = formatHourOnlyVH(parseInt(hour) || 0);
+                setClockManualVH(newTime);
+                vhClockPopup.classList.remove('show');
+                showToast(`Jam diubah ke ${newTime} WIB`);
+            });
+
+            vhCancelClockBtn.addEventListener('click', () => {
+                vhClockPopup.classList.remove('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (vhClockPopup && !vhClockPopup.contains(e.target) && e.target !== vhCustomClockBtn) {
+                    vhClockPopup.classList.remove('show');
+                }
+            });
+
+            setInterval(updateDateTimeVH, 1000);
+            updateDateTimeVH();
+
+            function parseValidasiData(text) {
+                const lines = text.split(/\r?\n/).filter(l => l.trim() !== '');
+                let result = {
+                    memberDeposit: null,
+                    nominalDeposit: null,
+                    memberWithdraw: null,
+                    nominalWithdraw: null
+                };
+
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+
+                    let m1 = line.match(/Deposit\s+Total\s*[:\t]\s*([\d.,]+)\s*[:\t]?\s*(\d+)/i);
+                    if (m1) {
+                        result.nominalDeposit = m1[1];
+                        result.memberDeposit = m1[2];
+                        continue;
+                    }
+
+                    let m2 = line.match(/Withdraw\s+Total\s*[:\t]\s*([\d.,]+)\s*[:\t]?\s*(\d+)/i);
+                    if (m2) {
+                        result.nominalWithdraw = m2[1];
+                        result.memberWithdraw = m2[2];
+                        continue;
+                    }
+
+                    let m3 = line.match(/Total\s+Member\s+Yang\s+Deposit\s*[:\t]\s*(\d+)/i);
+                    if (m3) {
+                        result.memberDeposit = m3[1];
+                        continue;
+                    }
+
+                    let m4 = line.match(/Total\s+Nominal\s+Deposit\s*[:\t]\s*([\d.,]+)/i);
+                    if (m4) {
+                        result.nominalDeposit = m4[1];
+                        continue;
+                    }
+
+                    let m5 = line.match(/Total\s+Member\s+Yang\s+Withdraw\s*[:\t]\s*(\d+)/i);
+                    if (m5) {
+                        result.memberWithdraw = m5[1];
+                        continue;
+                    }
+
+                    let m6 = line.match(/Total\s+Nominal\s+Withdraw\s*[:\t]\s*([\d.,]+)/i);
+                    if (m6) {
+                        result.nominalWithdraw = m6[1];
+                        continue;
+                    }
+                }
+
+                return result;
+            }
+
+            function renderVHResult(data) {
+                if (!data) {
+                    vhResultArea.innerHTML = `
+                        <div class="vh-empty-state">
+                            <i class="fas fa-chart-bar"></i>
+                            <h3>Belum ada data</h3>
+                            <p>Isi input manual & paste data validasi, lalu klik Generate</p>
+                        </div>`;
+                    return;
+                }
+
+                const totalValidasi = vhInputValidasi.value.trim() || '0';
+                const totalAktif = vhInputAktif.value.trim() || '0';
+                const memberDeposit = data.memberDeposit || '0';
+                const memberWithdraw = data.memberWithdraw || '0';
+                const nominalDeposit = formatNominalKoma(data.nominalDeposit);
+                const nominalWithdraw = formatNominalKoma(data.nominalWithdraw);
+
+                vhResultArea.innerHTML = `
+                    <div class="vh-grid">
+                        <div class="vh-result-card">
+                            <div class="vh-label">📊 Total Validasi</div>
+                            <div class="vh-value count">${totalValidasi}</div>
+                        </div>
+                        <div class="vh-result-card">
+                            <div class="vh-label">👥 Total Member Aktif / Deposit</div>
+                            <div class="vh-value count">${totalAktif}</div>
+                        </div>
+                        <div class="vh-result-card">
+                            <div class="vh-label">👥 Total Member Yang Deposit</div>
+                            <div class="vh-value count">${memberDeposit}</div>
+                        </div>
+                        <div class="vh-result-card">
+                            <div class="vh-label">💰 Total Nominal Deposit</div>
+                            <div class="vh-value currency">${nominalDeposit}</div>
+                        </div>
+                        <div class="vh-result-card">
+                            <div class="vh-label">👥 Total Member Yang Withdraw</div>
+                            <div class="vh-value count">${memberWithdraw}</div>
+                        </div>
+                        <div class="vh-result-card">
+                            <div class="vh-label">💸 Total Nominal Withdraw</div>
+                            <div class="vh-value currency">${nominalWithdraw}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function generateVH() {
+                const raw = vhRawData.value.trim();
+                const totalValidasi = vhInputValidasi.value.trim();
+                const totalAktif = vhInputAktif.value.trim();
+
+                if (!totalValidasi && !totalAktif) {
+                    alert('Isi minimal Total Validasi atau Total Member Aktif / Deposit!');
+                    return;
+                }
+
+                let parsed = { memberDeposit: null, nominalDeposit: null, memberWithdraw: null, nominalWithdraw: null };
+                if (raw) {
+                    parsed = parseValidasiData(raw);
+                }
+
+                const hasPasteData = parsed.memberDeposit || parsed.nominalDeposit || parsed.memberWithdraw || parsed.nominalWithdraw;
+
+                if (!hasPasteData && raw) {
+                    vhResultArea.innerHTML = `
+                        <div class="vh-empty-state">
+                            <i class="fas fa-exclamation-triangle" style="color:#f5a623;"></i>
+                            <h3>Data Paste Tidak Terbaca</h3>
+                            <p>Format tidak dikenali. Pastikan data mengandung salah satu format berikut:</p>
+                            <p style="margin-top:10px;font-size:0.85rem;color:#7a9fcf;">
+                                Deposit Total:&nbsp;&nbsp;65,995,308.00&nbsp;&nbsp;800<br>
+                                Withdraw Total:&nbsp;&nbsp;96,339,000.00&nbsp;&nbsp;197<br><br>
+                                atau<br><br>
+                                Total Member Yang Deposit : 800<br>
+                                Total Nominal Deposit : Rp.&nbsp;&nbsp;65,995,308,-<br>
+                                Total Member Yang Withdraw : 197<br>
+                                Total Nominal Withdraw : Rp. 96,339,000,-
+                            </p>
+                        </div>`;
+                    return;
+                }
+
+                currentVHData = parsed;
+                renderVHResult(parsed);
+
+                const now = new Date();
+                const dateStr = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                const timeStr = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+                vhTimestampInfo.textContent = `⏱️ ${dateStr} · ${timeStr} WIB`;
+
+                showToast('✅ Data validasi berhasil di-generate!');
+            }
+
+            function deleteVH() {
+                vhRawData.value = '';
+                vhInputValidasi.value = '';
+                vhInputAktif.value = '';
+                currentVHData = null;
+                vhResultArea.innerHTML = `
+                    <div class="vh-empty-state">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Belum ada data</h3>
+                        <p>Isi input manual & paste data validasi, lalu klik Generate</p>
+                    </div>`;
+                vhTimestampInfo.textContent = '⏱️ ';
+                showToast('🗑️ Data validasi dihapus');
+            }
+
+            function copyVH() {
+                const totalValidasi = vhInputValidasi.value.trim();
+                const totalAktif = vhInputAktif.value.trim();
+
+                if (!totalValidasi && !totalAktif) {
+                    alert('Belum ada data untuk disalin. Isi input manual terlebih dahulu.');
+                    return;
+                }
+
+                const brand = getSelectedBrand();
+                const memberDeposit = currentVHData ? (currentVHData.memberDeposit || '0') : '0';
+                const memberWithdraw = currentVHData ? (currentVHData.memberWithdraw || '0') : '0';
+                const nominalDeposit = currentVHData ? formatNominalKoma(currentVHData.nominalDeposit) : '—';
+                const nominalWithdraw = currentVHData ? formatNominalKoma(currentVHData.nominalWithdraw) : '—';
+
+                const dateStr = vhDateDisplay.textContent;
+                const timeStr = currentTimeVH || '00:00';
+
+                const report = 
+`Info : ${brand}
+${dateStr}
+Pukul : ${timeStr} WIB
+
+Total Validasi : ${totalValidasi || '0'}
+Total Member Aktif / Deposit : ${totalAktif || '0'}
+
+Total Member Yang Deposit : ${memberDeposit}
+Total Nominal Deposit : ${nominalDeposit}
+
+Total Member Yang Withdraw : ${memberWithdraw}
+Total Nominal Withdraw : ${nominalWithdraw}`;
+
+                navigator.clipboard.writeText(report).then(() => {
+                    showToast('✅ Report validasi berhasil disalin!');
+                }).catch(() => {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = report;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    showToast('✅ Report validasi berhasil disalin!');
+                });
+            }
+
+            vhGenerateBtn.addEventListener('click', generateVH);
+            vhDeleteBtn.addEventListener('click', deleteVH);
+            vhCopyBtn.addEventListener('click', copyVH);
+        })();
+
+        // ============================================================
+        // TOAST GLOBAL
+        // ============================================================
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast show';
+            setTimeout(() => {
+                toast.className = 'toast';
+            }, 2500);
+        }
+
+        console.log('✅ Dashboard siap - Format nominal KOMA akurat');
     </script>
 
 </body>
