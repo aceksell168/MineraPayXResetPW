@@ -1637,6 +1637,162 @@
             color: #5a7a9a;
         }
 
+        /* ===== CEK KESAMAAN DIGIT (dari chrome.html) ===== */
+        .digit-card {
+            max-width: 520px;
+            width: 100%;
+            margin: 0 auto;
+            background: #111d33;
+            border-radius: 24px;
+            padding: 2rem 2.2rem 2.2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+            border: 1px solid #1e3350;
+        }
+
+        .digit-card h1 {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #c8dfff;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .digit-card label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #8db0e8;
+            margin-bottom: 6px;
+        }
+
+        .digit-card input[type="text"] {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            border: 1px solid #1a2a42;
+            border-radius: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+            margin-bottom: 18px;
+            background: #0a1628;
+            color: #eaf3ff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .digit-card input[type="text"]:focus {
+            border-color: #6a9eff;
+            box-shadow: 0 0 0 3px rgba(106, 158, 255, 0.15);
+        }
+
+        .digit-card input[type="text"]::placeholder {
+            color: #3a5a7a;
+        }
+
+        .digit-card button {
+            width: 100%;
+            padding: 13px;
+            background: #1a3a6a;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 1px solid #2a5a9a;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        .digit-card button:hover {
+            background: #224a82;
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(59, 126, 255, 0.2);
+            border-color: #3b7eff;
+        }
+
+        .digit-card .hasil {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 16px;
+            background: #0d1a2d;
+            border: 1px solid #1a2a42;
+            display: none;
+        }
+
+        .digit-card .hasil.show {
+            display: block;
+        }
+
+        .digit-card .hasil p {
+            margin: 8px 0;
+            font-size: 0.95rem;
+            color: #eaf3ff;
+            word-break: break-all;
+        }
+
+        .digit-card .hasil .label {
+            font-weight: 600;
+            color: #7a9fcf;
+        }
+
+        .digit-card .status {
+            margin-top: 15px;
+            padding: 14px;
+            border-radius: 14px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .digit-card .status.sesuai {
+            background: #1a3a2a;
+            color: #b0f0d0;
+            border: 2px solid #2a6a52;
+        }
+
+        .digit-card .status.tidak {
+            background: #2a1a22;
+            color: #e8a0a0;
+            border: 2px solid #4a2a32;
+        }
+
+        .digit-card .digit-box {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .digit-card .digit-item {
+            flex: 1;
+            background: #0a1628;
+            border: 1px solid #1a2a42;
+            border-radius: 14px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .digit-card .digit-item .angka {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #6a9eff;
+        }
+
+        .digit-card .digit-item .ket {
+            font-size: 0.65rem;
+            color: #7a9fcf;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .digit-card .contoh {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: #5a7a9a;
+            text-align: center;
+            line-height: 1.6;
+        }
+
         /* ===== POPUP ===== */
         .popup-overlay {
             position: fixed;
@@ -1841,6 +1997,7 @@
             .vh-manual-grid { grid-template-columns: 1fr; }
             .vh-datetime-panel { justify-content: center; width: 100%; padding: 0.5rem 1rem; flex-wrap: wrap; gap: 0.5rem; }
             .vh-clock-wrapper { justify-content: center; flex-wrap: wrap; }
+            .digit-card { padding: 1.5rem; }
         }
 
         @media (max-width: 480px) {
@@ -1856,6 +2013,8 @@
             .wd-transaction-block .wd-nominal { font-size: 0.85rem; padding: 0 10px; }
             .vh-card .vh-header h1 { font-size: 1.1rem; }
             .vh-result-card .vh-value { font-size: 1.2rem; }
+            .digit-card { padding: 1.2rem; }
+            .digit-card h1 { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -1893,6 +2052,7 @@
             <li><a href="#" class="active" data-page="page-reset"><span class="icon">🔑</span> Reset Password</a></li>
             <li><a href="#" data-page="page-wd"><span class="icon">💳</span> Wd Pending MineraPay</a></li>
             <li><a href="#" data-page="page-validasi-jam"><span class="icon">📊</span> Validasi Per Jam</a></li>
+            <li><a href="#" data-page="page-cek-digit"><span class="icon">🔍</span> Cek Nama Rekening</a></li>
         </ul>
     </nav>
 
@@ -2133,6 +2293,45 @@
             </div>
         </div>
 
+        <!-- ===== PAGE 4: CEK KESAMAAN DIGIT ===== -->
+        <div id="page-cek-digit" class="page">
+            <div class="digit-card">
+                <h1>🔍 PerBandingan Nama Rekening</h1>
+
+                <label for="digitAdmin">Nama Pada Admin</label>
+                <input type="text" id="digitAdmin" placeholder="Input Nama Dari Admin">
+
+                <label for="digitValidasi">Nama Hasil Validasi</label>
+                <input type="text" id="digitValidasi" placeholder="Input Nama Hasil Validasi">
+
+                <button onclick="cekDigit()">Cek Hasil</button>
+
+                <div class="hasil" id="digitHasil">
+                    <p><span class="label">Nama Pada Admin:</span> <span id="outAdmin"></span></p>
+                    <p><span class="label">Nama Hasil Validasi:</span> <span id="outValidasi"></span></p>
+
+                    <div class="digit-box">
+                        <div class="digit-item">
+                            <div class="angka" id="digitAdminCount">0</div>
+                            <div class="ket">Digit Admin</div>
+                        </div>
+                        <div class="digit-item">
+                            <div class="angka" id="digitValidasiCount">0</div>
+                            <div class="ket">Digit Validasi</div>
+                        </div>
+                    </div>
+
+                    <div class="status" id="digitStatus"></div>
+                </div>
+
+                <div class="contoh">
+                    Contoh: <br>
+                    Admin: <b>RENDA NOVAN</b> → 10 digit <br>
+                    Validasi: <b>Rendra Novn</b> → 9 digit
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div id="toast" class="toast">✅ Berhasil disalin!</div>
@@ -2152,18 +2351,13 @@
     <script>
         // ============================================================
         // UTILITY: FORMAT NOMINAL — Rp. + KOMA RIBUAN + ,-
-        // Contoh: 66,739,308.00 -> Rp. 66,739,308,-
-        //         96,692,000.00 -> Rp. 96,692,000,-
         // ============================================================
         function formatNominalKoma(raw) {
             if (raw === null || raw === undefined || raw === '') return '—';
             let str = String(raw).trim();
 
-            // Hapus prefix "Rp." / "Rp" dan spasi
             str = str.replace(/^Rp\.?\s*/i, '').trim();
-            // Hapus trailing ",-" atau "-" atau ","
             str = str.replace(/[,\-]+$/g, '').trim();
-            // Hapus karakter selain digit, titik, koma
             str = str.replace(/[^\d.,]/g, '');
 
             if (str === '') return '—';
@@ -2178,10 +2372,8 @@
                 const lastDot = str.lastIndexOf('.');
 
                 if (lastComma > lastDot) {
-                    // 65.995.308,00 -> koma desimal, titik ribuan
                     integerPart = str.split(',')[0].replace(/\./g, '');
                 } else {
-                    // 65,995,308.00 -> titik desimal, koma ribuan
                     integerPart = str.split('.')[0].replace(/,/g, '');
                 }
             } else if (hasComma && !hasDot) {
@@ -2215,7 +2407,6 @@
             const num = parseInt(integerPart, 10);
             if (isNaN(num)) return raw;
 
-            // ✅ Rp. + KOMA ribuan + ,-
             return 'Rp. ' + num.toLocaleString('en-US') + ',-';
         }
 
@@ -2226,7 +2417,8 @@
         const pages = {
             'page-reset': document.getElementById('page-reset'),
             'page-wd': document.getElementById('page-wd'),
-            'page-validasi-jam': document.getElementById('page-validasi-jam')
+            'page-validasi-jam': document.getElementById('page-validasi-jam'),
+            'page-cek-digit': document.getElementById('page-cek-digit')
         };
 
         function activatePage(pageId) {
@@ -2526,7 +2718,8 @@
                 const numbers = "0123456789";
                 if (charset.includes('0') || charset.includes('1') || charset.includes('2') || 
                     charset.includes('3') || charset.includes('4') || charset.includes('5') || 
-                    charset.includes('6') || charset.includes('7') || charset.includes('8') || charset.includes('9')) {
+                    charset.includes('6') || charset.includes('7') || charset.includes('8') || 
+                    charset.includes('9')) {
                     
                     const nonDigits = charset.split('').filter(ch => !numbers.includes(ch));
                     const digits = charset.split('').filter(ch => numbers.includes(ch));
@@ -3472,6 +3665,53 @@ Total Nominal Withdraw : ${nominalWithdraw}`;
         })();
 
         // ============================================================
+        // CEK KESAMAAN DIGIT
+        // ============================================================
+        function hitungDigit(str) {
+            return str.replace(/\s+/g, '').length;
+        }
+
+        function cekDigit() {
+            const admin = document.getElementById('digitAdmin').value.trim();
+            const validasi = document.getElementById('digitValidasi').value.trim();
+
+            if (!admin || !validasi) {
+                alert('Mohon isi kedua kolom terlebih dahulu!');
+                return;
+            }
+
+            const digitAdmin = hitungDigit(admin);
+            const digitValidasi = hitungDigit(validasi);
+
+            document.getElementById('outAdmin').textContent = admin;
+            document.getElementById('outValidasi').textContent = validasi;
+            document.getElementById('digitAdminCount').textContent = digitAdmin + ' Digit';
+            document.getElementById('digitValidasiCount').textContent = digitValidasi + ' Digit';
+
+            const statusEl = document.getElementById('digitStatus');
+            const hasilEl = document.getElementById('digitHasil');
+
+            if (digitAdmin === digitValidasi) {
+                statusEl.textContent = '✅ KLOP / SESUAI';
+                statusEl.className = 'status sesuai';
+            } else {
+                statusEl.textContent = '❌ TIDAK SESUAI';
+                statusEl.className = 'status tidak';
+            }
+
+            hasilEl.classList.add('show');
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const activePage = document.querySelector('.page.active');
+                if (activePage && activePage.id === 'page-cek-digit') {
+                    cekDigit();
+                }
+            }
+        });
+
+        // ============================================================
         // TOAST GLOBAL
         // ============================================================
         function showToast(message) {
@@ -3483,7 +3723,7 @@ Total Nominal Withdraw : ${nominalWithdraw}`;
             }, 2500);
         }
 
-        console.log('✅ Dashboard siap - Nominal Rp. + KOMA + ,-');
+        console.log('✅ Dashboard siap - Cek Kesamaan Digit ditambahkan ke sidebar');
     </script>
 
 </body>
