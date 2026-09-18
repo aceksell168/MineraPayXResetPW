@@ -1637,7 +1637,7 @@
             color: #5a7a9a;
         }
 
-        /* ===== CEK KESAMAAN DIGIT (dari chrome.html) ===== */
+        /* ===== CEK KESAMAAN DIGIT ===== */
         .digit-card {
             max-width: 520px;
             width: 100%;
@@ -2052,7 +2052,7 @@
             <li><a href="#" class="active" data-page="page-reset"><span class="icon">🔑</span> Reset Password</a></li>
             <li><a href="#" data-page="page-wd"><span class="icon">💳</span> Wd Pending MineraPay</a></li>
             <li><a href="#" data-page="page-validasi-jam"><span class="icon">📊</span> Validasi Per Jam</a></li>
-            <li><a href="#" data-page="page-cek-digit"><span class="icon">🔍</span> Cek Nama Rekening</a></li>
+            <li><a href="#" data-page="page-cek-digit"><span class="icon">🔍</span> Cek Kesamaan Digit</a></li>
         </ul>
     </nav>
 
@@ -2296,15 +2296,15 @@
         <!-- ===== PAGE 4: CEK KESAMAAN DIGIT ===== -->
         <div id="page-cek-digit" class="page">
             <div class="digit-card">
-                <h1>🔍 PerBandingan Nama Rekening</h1>
+                <h1>🔍 Cek Kesamaan Digit Nama Rekening</h1>
 
                 <label for="digitAdmin">Nama Pada Admin</label>
-                <input type="text" id="digitAdmin" placeholder="Input Nama Dari Admin">
+                <input type="text" id="digitAdmin" placeholder="Contoh: RENDA NOVAN">
 
                 <label for="digitValidasi">Nama Hasil Validasi</label>
-                <input type="text" id="digitValidasi" placeholder="Input Nama Hasil Validasi">
+                <input type="text" id="digitValidasi" placeholder="Contoh: Rendra Novn">
 
-                <button onclick="cekDigit()">Cek Hasil</button>
+                <button onclick="cekDigit()">Cek Sekarang</button>
 
                 <div class="hasil" id="digitHasil">
                     <p><span class="label">Nama Pada Admin:</span> <span id="outAdmin"></span></p>
@@ -2336,6 +2336,7 @@
 
     <div id="toast" class="toast">✅ Berhasil disalin!</div>
 
+    <!-- ===== POPUP WD ===== -->
     <div class="popup-overlay" id="wdPopupOverlay">
         <div class="popup-box">
             <button class="popup-close" id="wdPopupClose">✕</button>
@@ -2343,6 +2344,28 @@
             <div class="popup-title" id="wdPopupTitle">Berhasil!</div>
             <div class="popup-message" id="wdPopupMessage">Report berhasil disalin ke clipboard.</div>
             <button class="popup-btn" id="wdPopupBtn">OK</button>
+        </div>
+    </div>
+
+    <!-- ===== POPUP VALIDASI PER JAM (BARU) ===== -->
+    <div class="popup-overlay" id="vhPopupOverlay">
+        <div class="popup-box">
+            <button class="popup-close" id="vhPopupClose">✕</button>
+            <span class="popup-icon" id="vhPopupIcon">⚠️</span>
+            <div class="popup-title" id="vhPopupTitle">Perhatian</div>
+            <div class="popup-message" id="vhPopupMessage">Isi minimal Total Validasi atau Total Member Aktif / Deposit!</div>
+            <button class="popup-btn" id="vhPopupBtn">OK</button>
+        </div>
+    </div>
+
+    <!-- ===== POPUP CEK DIGIT (BARU) ===== -->
+    <div class="popup-overlay" id="digitPopupOverlay">
+        <div class="popup-box">
+            <button class="popup-close" id="digitPopupClose">✕</button>
+            <span class="popup-icon" id="digitPopupIcon">⚠️</span>
+            <div class="popup-title" id="digitPopupTitle">Perhatian</div>
+            <div class="popup-message" id="digitPopupMessage">Mohon isi kedua kolom terlebih dahulu!</div>
+            <button class="popup-btn" id="digitPopupBtn">OK</button>
         </div>
     </div>
 
@@ -2495,6 +2518,58 @@
         wdBrandSelect.addEventListener('change', updateBrandLabel);
 
         updateBrandLabel();
+
+        // ============================================================
+        // POPUP HELPER (GENERIC)
+        // ============================================================
+        function setupPopup(overlayId, closeBtnId, okBtnId, defaultIcon, defaultTitle) {
+            const overlay = document.getElementById(overlayId);
+            const closeBtn = document.getElementById(closeBtnId);
+            const okBtn = document.getElementById(okBtnId);
+
+            function hide() {
+                overlay.classList.remove('active');
+            }
+
+            function show(icon, title, message, btnClass) {
+                const iconEl = overlay.querySelector('.popup-icon');
+                const titleEl = overlay.querySelector('.popup-title');
+                const msgEl = overlay.querySelector('.popup-message');
+                const btnEl = overlay.querySelector('.popup-btn');
+
+                if (iconEl) iconEl.textContent = icon || defaultIcon;
+                if (titleEl) titleEl.textContent = title || defaultTitle;
+                if (msgEl) msgEl.textContent = message || '';
+                if (btnEl) {
+                    btnEl.className = 'popup-btn' + (btnClass ? ' ' + btnClass : '');
+                }
+                overlay.classList.add('active');
+            }
+
+            // Tutup via tombol X
+            if (closeBtn) closeBtn.addEventListener('click', hide);
+            // Tutup via tombol OK
+            if (okBtn) okBtn.addEventListener('click', hide);
+            // Tutup via klik overlay (luar kotak)
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) hide();
+            });
+            // Tutup via Escape
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) hide();
+            });
+
+            return { show, hide, overlay };
+        }
+
+        // Inisialisasi popup WD (yang sudah ada)
+        const wdPopup = setupPopup('wdPopupOverlay', 'wdPopupClose', 'wdPopupBtn', '✅', 'Berhasil!');
+
+        // Inisialisasi popup Validasi Per Jam (BARU)
+        const vhPopup = setupPopup('vhPopupOverlay', 'vhPopupClose', 'vhPopupBtn', '⚠️', 'Perhatian');
+
+        // Inisialisasi popup Cek Digit (BARU)
+        const digitPopup = setupPopup('digitPopupOverlay', 'digitPopupClose', 'digitPopupBtn', '⚠️', 'Perhatian');
 
         // ============================================================
         // RESET PASSWORD
@@ -3089,34 +3164,6 @@
             const wdTimestampInfo = document.getElementById('wdTimestampInfo');
             const wdTimestampInfo2 = document.getElementById('wdTimestampInfo2');
 
-            const wdPopupOverlay = document.getElementById('wdPopupOverlay');
-            const wdPopupIcon = document.getElementById('wdPopupIcon');
-            const wdPopupTitle = document.getElementById('wdPopupTitle');
-            const wdPopupMessage = document.getElementById('wdPopupMessage');
-            const wdPopupBtn = document.getElementById('wdPopupBtn');
-            const wdPopupClose = document.getElementById('wdPopupClose');
-
-            function showWDPopup(icon, title, message, btnClass = '') {
-                wdPopupIcon.textContent = icon;
-                wdPopupTitle.textContent = title;
-                wdPopupMessage.textContent = message;
-                wdPopupBtn.className = 'popup-btn' + (btnClass ? ' ' + btnClass : '');
-                wdPopupOverlay.classList.add('active');
-            }
-
-            function hideWDPopup() {
-                wdPopupOverlay.classList.remove('active');
-            }
-
-            wdPopupBtn.addEventListener('click', hideWDPopup);
-            wdPopupClose.addEventListener('click', hideWDPopup);
-            wdPopupOverlay.addEventListener('click', function(e) {
-                if (e.target === wdPopupOverlay) hideWDPopup();
-            });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && wdPopupOverlay.classList.contains('active')) hideWDPopup();
-            });
-
             function parseWDData(text) {
                 const lines = text.split(/\r?\n/).filter(line => line.trim() !== '');
                 const transactions = [];
@@ -3288,13 +3335,13 @@
                 const link = wdLinkInput.value.trim();
                 
                 if (!raw.trim()) {
-                    showWDPopup('⚠️', 'Tidak Ada Data', 'Masukkan data terlebih dahulu sebelum menyalin report.', 'popup-btn-warning');
+                    wdPopup.show('⚠️', 'Tidak Ada Data', 'Masukkan data terlebih dahulu sebelum menyalin report.', 'popup-btn-warning');
                     return;
                 }
                 
                 const transactions = parseWDData(raw);
                 if (transactions.length === 0) {
-                    showWDPopup('⚠️', 'Data Tidak Valid', 'Tidak ada transaksi dengan status "Wait For Payment" untuk disalin. Periksa format data Anda.', 'popup-btn-warning');
+                    wdPopup.show('⚠️', 'Data Tidak Valid', 'Tidak ada transaksi dengan status "Wait For Payment" untuk disalin. Periksa format data Anda.', 'popup-btn-warning');
                     return;
                 }
 
@@ -3322,7 +3369,7 @@
                 reportText += 'Untuk perihal ini akan di cek secara berkala dan menunggu keputusan final dari pihak Minerapay ya ko/ci.';
 
                 navigator.clipboard.writeText(reportText).then(() => {
-                    showWDPopup('✅', 'Berhasil Disalin!', 'Report sudah berhasil Tercopy ke clipboard.', 'popup-btn-success');
+                    wdPopup.show('✅', 'Berhasil Disalin!', 'Report sudah berhasil Tercopy ke clipboard.', 'popup-btn-success');
                 }).catch(() => {
                     const textarea = document.createElement('textarea');
                     textarea.value = reportText;
@@ -3330,7 +3377,7 @@
                     textarea.select();
                     document.execCommand('copy');
                     document.body.removeChild(textarea);
-                    showWDPopup('✅', 'Berhasil Disalin!', 'Report sudah berhasil Tercopy ke clipboard (fallback).', 'popup-btn-success');
+                    wdPopup.show('✅', 'Berhasil Disalin!', 'Report sudah berhasil Tercopy ke clipboard (fallback).', 'popup-btn-success');
                 });
             }
 
@@ -3341,7 +3388,7 @@
                 wdKeteranganWrapper.style.display = 'none';
                 wdTimestampInfo.textContent = '⏱️ ';
                 wdTimestampInfo2.textContent = '⏱️ ';
-                showWDPopup('🔄', 'Data Direset', 'Data telah dikosongkan. Silakan paste data baru dan Generate ulang.', '');
+                wdPopup.show('🔄', 'Data Direset', 'Data telah dikosongkan. Silakan paste data baru dan Generate ulang.', '');
             }
 
             wdGenerateBtn.addEventListener('click', generateWDReport);
@@ -3558,7 +3605,8 @@
                 const totalAktif = vhInputAktif.value.trim();
 
                 if (!totalValidasi && !totalAktif) {
-                    alert('Isi minimal Total Validasi atau Total Member Aktif / Deposit!');
+                    // ✅ POPUP KUSTOM (bukan alert bawaan browser)
+                    vhPopup.show('⚠️', 'Data Belum Lengkap', 'Isi minimal Total Validasi atau Total Member Aktif / Deposit terlebih dahulu!', 'popup-btn-warning');
                     return;
                 }
 
@@ -3619,7 +3667,8 @@
                 const totalAktif = vhInputAktif.value.trim();
 
                 if (!totalValidasi && !totalAktif) {
-                    alert('Belum ada data untuk disalin. Isi input manual terlebih dahulu.');
+                    // ✅ POPUP KUSTOM (bukan alert bawaan browser)
+                    vhPopup.show('⚠️', 'Belum Ada Data', 'Isi input manual terlebih dahulu sebelum menyalin report.', 'popup-btn-warning');
                     return;
                 }
 
@@ -3676,7 +3725,8 @@ Total Nominal Withdraw : ${nominalWithdraw}`;
             const validasi = document.getElementById('digitValidasi').value.trim();
 
             if (!admin || !validasi) {
-                alert('Mohon isi kedua kolom terlebih dahulu!');
+                // ✅ POPUP KUSTOM (bukan alert bawaan browser)
+                digitPopup.show('⚠️', 'Data Belum Lengkap', 'Mohon isi kedua kolom terlebih dahulu!', 'popup-btn-warning');
                 return;
             }
 
@@ -3723,7 +3773,7 @@ Total Nominal Withdraw : ${nominalWithdraw}`;
             }, 2500);
         }
 
-        console.log('✅ Dashboard siap - Cek Kesamaan Digit ditambahkan ke sidebar');
+        console.log('✅ Dashboard siap - Popup kustom untuk Validasi Per Jam & Cek Digit');
     </script>
 
 </body>
